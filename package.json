@@ -1,7 +1,7 @@
 {
   "name": "figma-color-name",
-  "version": "1.1.0",
-  "description": "Figma color name",
+  "version": "1.0.0",
+  "description": "Name that color.",
   "type": "module",
   "main": "dist/canvas.js",
   "scripts": {
@@ -23,7 +23,6 @@
     "name"
   ],
   "author": "@planetabhi",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/planetabhi/figma-color-name/issues"
   },
@@ -39,10 +38,10 @@
     "@new-ui/reset": "^0.0.5",
     "@rollup/plugin-replace": "^6.0.2",
     "@types/node": "22.10.5",
-    "@types/react": "19.0.2",
+    "@types/react": "19.0.3",
     "@types/react-dom": "19.0.2",
-    "@typescript-eslint/eslint-plugin": "8.19.0",
-    "@typescript-eslint/parser": "8.19.0",
+    "@typescript-eslint/eslint-plugin": "8.19.1",
+    "@typescript-eslint/parser": "8.19.1",
     "@vitejs/plugin-react": "4.3.4",
     "concurrently": "9.1.2",
     "esbuild": "^0.24.2",

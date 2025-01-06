@@ -1,8 +1,6 @@
-// https://www.figma.com/plugin-docs/manifest/
-
 export default {
   name: "Color Name",
-  id: "0000000000000000000",
+  id: "1458188952030933252",
   api: "1.0.0",
   editorType: ["figma", "figjam"],
   main: "./canvas.js",
