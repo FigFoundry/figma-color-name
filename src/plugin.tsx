@@ -12,6 +12,7 @@ if (container) {
     const [colors, setColors] = React.useState([]);
 
     React.useEffect(() => {
+      // Listen for messages from the main thread
       window.onmessage = (event) => {
         if (event.data.pluginMessage.type === "colors") {
           setColors(event.data.pluginMessage.colors);
@@ -22,19 +23,25 @@ if (container) {
     }, []);
 
     return (
-      <div>
+      <div className="color-grid">
         {colors.length > 0 ? (
           colors.map((color, index) => (
-            <div key={index} className="color-info">
-              <div><strong>Color Name:</strong> {color.name}</div>
-              <div><strong>HEX:</strong> {color.hex}</div>
-              <div><strong>RGBA:</strong> {color.rgba}</div>
-              <div><strong>HSL:</strong> {color.hsl}</div>
-              <div><strong>OKLCH:</strong> {color.oklch}</div>
+            <div
+              key={index}
+              className="color-card"
+              style={{ backgroundColor: color.hex }}
+            >
+              <div className="color-info">
+                <div className="color-name">{color.name}</div>
+                <div className="color-value">HEX: {color.hex}</div>
+                <div className="color-value">RGBA: {color.rgba}</div>
+                <div className="color-value">HSL: {color.hsl}</div>
+                <div className="color-value">OKLCH: {color.oklch}</div>
+              </div>
             </div>
           ))
         ) : (
-          <div>No colors found. Please select an element with a solid fill.</div>
+          <div className="no-colors">No colors found. Please select an element with a solid fill.</div>
         )}
       </div>
     );
