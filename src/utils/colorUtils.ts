@@ -1,6 +1,5 @@
 import { namedColors } from "./colorData";
 
-// Function to find the closest named color
 export function getClosestNamedColor(hex: string): string {
   let closestColor = "Unknown Color";
   let minDistance = Infinity;
@@ -12,11 +11,9 @@ export function getClosestNamedColor(hex: string): string {
       closestColor = color.name;
     }
   }
-
   return closestColor;
 }
 
-// Function to calculate the distance between two HEX colors
 function getColorDistance(hex1: string, hex2: string): number {
   const r1 = parseInt(hex1.slice(1, 3), 16);
   const g1 = parseInt(hex1.slice(3, 5), 16);

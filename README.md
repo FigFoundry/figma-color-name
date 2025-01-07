@@ -1,11 +1,25 @@
 ```
 .
 ├── src
-│   ├── assets/
-│   ├── components/
-│   ├── styles/
-│   ├── types/
-│   ├── utils/
+│   ├── assets
+│   │   └── _icon.png
+│   ├── components
+│   ├── styles
+│   │   ├── _reset.scss
+│   │   ├── _variables.scss
+│   │   └── base.scss
+│   ├── types
+│   │   └── chroma-js.d.ts
+│   ├── utils
+│   │   ├── colorData
+│   │   │   ├── colorsBASIC.ts
+│   │   │   ├── colorsHTML.ts
+│   │   │   ├── colorsNTC.ts
+│   │   │   ├── colorsPANTONE.ts
+│   │   │   ├── colorsROY.ts
+│   │   │   ├── colorsX11.ts
+│   │   │   └── index.ts
+│   │   └── colorUtils.ts
 │   ├── canvas.ts
 │   ├── plugin.html
 │   └── plugin.tsx
