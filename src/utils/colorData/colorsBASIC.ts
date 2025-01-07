@@ -1,4 +1,4 @@
-export const colorsX11 = [
+export const colorsBASIC = [
     { name: 'black', hex: '#000000' },
     { name: 'blue', hex: '#0000FF' },
     { name: 'cyan', hex: '#00FFFF' },

@@ -1,4 +1,4 @@
-export const colorsX11 = [
+export const colorsPANTONE = [
     {
         "name": "Mahogany",
         "hex": "#CD4A4A"

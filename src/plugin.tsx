@@ -24,17 +24,10 @@ if (container) {
       <div className="color-grid">
         {colors.length > 0 ? (
           colors.map((color, index) => (
-            <div
-              key={index}
-              className="color-card"
-              style={{ backgroundColor: color.hex, color: color.textColor }}
-            >
+            <div key={index} className="color-card">
               <div className="color-info">
                 <div className="color-name">{color.name}</div>
                 <div className="color-value">HEX: {color.hex}</div>
-                <div className="color-value">RGBA: {color.rgba}</div>
-                <div className="color-value">HSL: {color.hsl}</div>
-                <div className="color-value">OKLCH: {color.oklch}</div>
               </div>
             </div>
           ))

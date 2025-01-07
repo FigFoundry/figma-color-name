@@ -1,4 +1,4 @@
-import { rgbToHex, rgbToRgba, rgbToHsl, rgbToOklch, getClosestNamedColor, getTextColor } from "./utils/colorUtils";
+import { getClosestNamedColor } from "./utils/colorUtils";
 
 // Show the plugin UI
 figma.showUI(__html__, { themeColors: true, width: 280, height: 272 });
@@ -21,19 +21,11 @@ function extractColorsFromSelection() {
         if (fill.type === "SOLID") {
           const color = fill.color;
           const hex = rgbToHex(color);
-          const rgba = rgbToRgba(color, fill.opacity || 1);
-          const hsl = rgbToHsl(color);
-          const oklch = rgbToOklch(color);
           const colorName = getClosestNamedColor(hex);
-          const textColor = getTextColor(hex);
 
           colors.push({
             name: colorName,
             hex,
-            rgba,
-            hsl,
-            oklch,
-            textColor,
           });
         }
       }
@@ -42,6 +34,15 @@ function extractColorsFromSelection() {
 
   // Send the colors to the UI
   figma.ui.postMessage({ type: "colors", colors });
+}
+
+// Convert RGB to HEX
+function rgbToHex(color: RGB): string {
+  const toHex = (value: number) => {
+    const hex = Math.round(value * 255).toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+  };
+  return `#${toHex(color.r)}${toHex(color.g)}${toHex(color.b)}`.toUpperCase();
 }
 
 // Listen for selection changes

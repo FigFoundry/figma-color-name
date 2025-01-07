@@ -1,4 +1,4 @@
-export const colorsX11 = [
+export const colorsROY = [
     { name: 'red', hex: '#FF0000' },
     { name: 'orange', hex: '#FFA500' },
     { name: 'yellow', hex: '#FFFF00' },
