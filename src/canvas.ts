@@ -35,7 +35,6 @@ function extractColorsFromSelection() {
 
 function findClosestColors(hex: string): string[] {
   const datasets = [colorsHTML, colorsNTC, colorsPANTONE, colorsROY, colorsX11];
-  const threshold = 25; // Adjust this threshold for color similarity
   const matches = [];
 
   for (const dataset of datasets) {
@@ -50,9 +49,8 @@ function findClosestColors(hex: string): string[] {
       }
     }
 
-    if (minDistance < threshold) {
-      matches.push(closestName);
-    }
+    // Always add the closest name, even if it doesn't meet the threshold
+    matches.push(closestName);
   }
 
   // Remove duplicates and similar words
