@@ -88,20 +88,22 @@ const App = () => {
               }}
             >
               <div style={{ fontSize: '14px', marginBottom: '8px' }}>
-                {color.names.map(toTitleCase).join(', ')}
+                {color.names && color.names.length > 0
+                  ? color.names.map(toTitleCase).join(', ')
+                  : "Not available"}
               </div>
-              <div style={{ fontSize: '12px', opacity: 0.9 }}>
-                <div>HEX: {color.hex}</div>
-                <div>RGB: {convertToRgba(color.hex)}</div>
-                <div>HSL: {hexToHsl(color.hex)}</div>
-                <div>OKLCH: {hexToOklch(color.hex)}</div>
-                <div>CMYK: {hexToCmyk(color.hex)}</div>
+              <div className="meta-content">
+                <div>{color.hex}</div>
+                <div>{convertToRgba(color.hex)}</div>
+                <div>{hexToHsl(color.hex)}</div>
+                <div>{hexToOklch(color.hex)}</div>
+                <div>{hexToCmyk(color.hex)}</div>
               </div>
             </div>
           );
         })
       ) : (
-        <div className="no-colors">No colors found. Please select an element with a solid fill.</div>
+        <div className="no-colors">Select an element with a solid fill</div>
       )}
     </div>
   );

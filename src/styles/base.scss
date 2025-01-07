@@ -7,18 +7,17 @@ body {
   font-family: var(--system-ui);
   font-weight: 400;
   font-size: 0.75rem;
-  margin: 16px;
+  margin: 8px;
 }
 
 .color-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 4px;
 }
 
 .color-card {
-  border-radius: 8px;
   padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .color-info {
@@ -35,9 +34,18 @@ body {
 }
 
 .no-colors {
-  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--system-ui);
   font-size: 16px;
   color: #666;
   text-align: center;
-  padding: 16px;
+}
+
+.meta-content {
+  font-family: var(--mono-ui);
+  font-size: .6875rem;
+  letter-spacing: .00344rem;
+  line-height: 1rem;
 }
