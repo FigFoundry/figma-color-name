@@ -3,39 +3,13 @@
 
 body {
   background-color: var(--figma-color-bg);
-  color: var(--figma-color-text);
+  //color: var(--figma-color-text);
   font-family: var(--system-ui);
   font-weight: 400;
   font-size: 0.75rem;
   margin: 16px;
 }
 
-// src/styles/base.scss
-
-// Function to calculate luminance
-@function luminance($color) {
-  $r: red($color) / 255;
-  $g: green($color) / 255;
-  $b: blue($color) / 255;
-
-  $r: if($r <= 0.03928, $r / 12.92, pow(($r + 0.055) / 1.055, 2.4));
-  $g: if($g <= 0.03928, $g / 12.92, pow(($g + 0.055) / 1.055, 2.4));
-  $b: if($b <= 0.03928, $b / 12.92, pow(($b + 0.055) / 1.055, 2.4));
-
-  @return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
-}
-
-// Function to determine text color based on background color
-@function text-color($background) {
-  $luminance: luminance($background);
-  @if ($luminance > 0.5) {
-    @return #000000; // Use black text for light backgrounds
-  } @else {
-    @return #ffffff; // Use white text for dark backgrounds
-  }
-}
-
-// Card layout styles
 .color-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -47,17 +21,9 @@ body {
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-
-  &:hover {
-    transform: translateY(-4px);
-  }
 }
 
 .color-info {
-  color: inherit; // Inherit text color from parent
-  font-family: Arial, sans-serif;
-
   .color-name {
     font-size: 18px;
     font-weight: bold;

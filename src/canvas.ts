@@ -1,7 +1,9 @@
-import { rgbToHex, rgbToRgba, rgbToHsl, rgbToOklch, getColorName } from './utils/colorUtils';
+import { rgbToHex, rgbToRgba, rgbToHsl, rgbToOklch, getClosestNamedColor, getTextColor } from "./utils/colorUtils";
 
+// Show the plugin UI
 figma.showUI(__html__, { themeColors: true, width: 280, height: 272 });
 
+// Function to extract colors from the current selection
 function extractColorsFromSelection() {
   const selection = figma.currentPage.selection;
 
@@ -22,7 +24,8 @@ function extractColorsFromSelection() {
           const rgba = rgbToRgba(color, fill.opacity || 1);
           const hsl = rgbToHsl(color);
           const oklch = rgbToOklch(color);
-          const colorName = getColorName(hex);
+          const colorName = getClosestNamedColor(hex);
+          const textColor = getTextColor(hex);
 
           colors.push({
             name: colorName,
@@ -30,17 +33,21 @@ function extractColorsFromSelection() {
             rgba,
             hsl,
             oklch,
+            textColor,
           });
         }
       }
     }
   }
 
+  // Send the colors to the UI
   figma.ui.postMessage({ type: "colors", colors });
 }
 
+// Listen for selection changes
 figma.on("selectionchange", () => {
   extractColorsFromSelection();
 });
 
+// Initial call to extract colors when the plugin loads
 extractColorsFromSelection();

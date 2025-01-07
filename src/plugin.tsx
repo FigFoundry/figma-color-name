@@ -1,10 +1,8 @@
-// src/plugin.tsx
+import React from "react";
+import { createRoot } from "react-dom/client";
+import "./styles/base.scss";
 
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles/base.scss';
-
-const container = document.getElementById('color-list');
+const container = document.getElementById("color-list");
 if (container) {
   const root = createRoot(container);
 
@@ -29,7 +27,7 @@ if (container) {
             <div
               key={index}
               className="color-card"
-              style={{ backgroundColor: color.hex }}
+              style={{ backgroundColor: color.hex, color: color.textColor }}
             >
               <div className="color-info">
                 <div className="color-name">{color.name}</div>
@@ -49,5 +47,5 @@ if (container) {
 
   root.render(<App />);
 } else {
-  console.error('Container element not found');
+  console.error("Container element not found");
 }
