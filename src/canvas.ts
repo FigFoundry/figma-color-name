@@ -1,4 +1,4 @@
-import { colorsHTML, colorsNTC, colorsPANTONE, colorsROY, colorsX11 } from "./utils/colorData";
+import { colorsHTML, colorsNTC, colorsPANTONE, colorsX11 } from "./utils/colorData";
 
 figma.showUI(__html__, { themeColors: true, width: 280, height: 400 });
 
@@ -34,7 +34,7 @@ function extractColorsFromSelection() {
 }
 
 function findClosestColors(hex: string): string[] {
-  const datasets = [colorsHTML, colorsNTC, colorsPANTONE, colorsROY, colorsX11];
+  const datasets = [colorsHTML, colorsNTC, colorsPANTONE, colorsX11];
   const matches = [];
 
   for (const dataset of datasets) {

@@ -345,19 +345,10 @@ export const colorsPANTONE = [
         "name": "Brick Red",
         "hex": "#CB4154"
       },{
-        "name": "White",
-        "hex": "#EDEDED"
-      },{
         "name": "Timberwolf",
         "hex": "#DBD7D2"
       },{
         "name": "Silver",
         "hex": "#CDC5C2"
-      },{
-        "name": "Gray",
-        "hex": "#95918C"
-      },{
-        "name": "Black",
-        "hex": "#232323"
       }
 ];
