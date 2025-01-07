@@ -1,31 +1,46 @@
-/* This is a placeholder canvas logic. Replace this logic with your own when building your plugin. */
+import { rgbToHex, rgbToRgba, rgbToHsl, rgbToOklch, getColorName } from './utils/colorUtils';
 
-import { PluginMessage } from './types/messages';
 figma.showUI(__html__, { themeColors: true, width: 280, height: 272 });
 
-figma.ui.onmessage = (msg: PluginMessage) => {
-  if (msg.type === 'generate-shapes') {
-    try {
-      const nodes: SceneNode[] = [];
-      for (let i = 0; i < msg.numberOfShapes; i++) {
-        let shape: RectangleNode | EllipseNode;
-        if (msg.shapeType === 'ELLIPSE') {
-          shape = figma.createEllipse();
-        } else {
-          shape = figma.createRectangle();
+function extractColorsFromSelection() {
+  const selection = figma.currentPage.selection;
+
+  if (selection.length === 0) {
+    figma.ui.postMessage({ type: "no-selection" });
+    return;
+  }
+
+  const colors = [];
+
+  for (const node of selection) {
+    if ("fills" in node) {
+      const fills = node.fills as Paint[];
+      for (const fill of fills) {
+        if (fill.type === "SOLID") {
+          const color = fill.color;
+          const hex = rgbToHex(color);
+          const rgba = rgbToRgba(color, fill.opacity || 1);
+          const hsl = rgbToHsl(color);
+          const oklch = rgbToOklch(color);
+          const colorName = getColorName(hex);
+
+          colors.push({
+            name: colorName,
+            hex,
+            rgba,
+            hsl,
+            oklch,
+          });
         }
-        shape.x = i * 300;
-        shape.resize(200, 100);
-        shape.fills = [{ type: 'SOLID', color: msg.color }];
-        figma.currentPage.appendChild(shape);
-        nodes.push(shape);
       }
-      figma.viewport.scrollAndZoomIntoView(nodes);
-      figma.currentPage.selection = nodes;
-      figma.notify('Shapes created successfully!');
-    } catch (error) {
-      console.error('Error creating shapes:', error);
-      figma.notify('Error creating shapes. Check console for details.');
     }
   }
-};
+
+  figma.ui.postMessage({ type: "colors", colors });
+}
+
+figma.on("selectionchange", () => {
+  extractColorsFromSelection();
+});
+
+extractColorsFromSelection();

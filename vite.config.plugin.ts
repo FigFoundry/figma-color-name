@@ -33,7 +33,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => ({
       input: path.resolve(__dirname, "src/plugin.html"),
       output: {
         entryFileNames: "ui.js",
-        format: "esm",
+        format: "esm", // Ensure output is in ES module format
       },
     },
   },
