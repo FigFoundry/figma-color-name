@@ -1,9 +1,7 @@
-import { getClosestNamedColor } from "./utils/colorUtils";
+import { colorsHTML, colorsNTC, colorsPANTONE, colorsROY, colorsX11 } from "./utils/colorData";
 
-// Show the plugin UI
-figma.showUI(__html__, { themeColors: true, width: 280, height: 272 });
+figma.showUI(__html__, { themeColors: true, width: 280, height: 400 });
 
-// Function to extract colors from the current selection
 function extractColorsFromSelection() {
   const selection = figma.currentPage.selection;
 
@@ -21,22 +19,57 @@ function extractColorsFromSelection() {
         if (fill.type === "SOLID") {
           const color = fill.color;
           const hex = rgbToHex(color);
-          const colorName = getClosestNamedColor(hex);
+          const names = findClosestColors(hex);
 
           colors.push({
-            name: colorName,
             hex,
+            names
           });
         }
       }
     }
   }
 
-  // Send the colors to the UI
   figma.ui.postMessage({ type: "colors", colors });
 }
 
-// Convert RGB to HEX
+function findClosestColors(hex: string): string[] {
+  const datasets = [colorsHTML, colorsNTC, colorsPANTONE, colorsROY, colorsX11];
+  const threshold = 25; // Adjust this threshold for color similarity
+  const matches = [];
+
+  for (const dataset of datasets) {
+    let minDistance = Infinity;
+    let closestName = '';
+
+    for (const color of dataset) {
+      const distance = getColorDistance(hex, color.hex);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestName = color.name;
+      }
+    }
+
+    if (minDistance < threshold) {
+      matches.push(closestName);
+    }
+  }
+
+  // Remove duplicates and similar words
+  return [...new Set(matches)].reduce((unique, name) => {
+    const words = name.toLowerCase().split(' ');
+    const shouldAdd = !unique.some(existing => {
+      const existingWords = existing.toLowerCase().split(' ');
+      return words.some(word => existingWords.includes(word));
+    });
+    
+    if (shouldAdd) {
+      unique.push(name);
+    }
+    return unique;
+  }, [] as string[]);
+}
+
 function rgbToHex(color: RGB): string {
   const toHex = (value: number) => {
     const hex = Math.round(value * 255).toString(16);
@@ -45,10 +78,22 @@ function rgbToHex(color: RGB): string {
   return `#${toHex(color.r)}${toHex(color.g)}${toHex(color.b)}`.toUpperCase();
 }
 
-// Listen for selection changes
+function getColorDistance(hex1: string, hex2: string): number {
+  const r1 = parseInt(hex1.slice(1, 3), 16);
+  const g1 = parseInt(hex1.slice(3, 5), 16);
+  const b1 = parseInt(hex1.slice(5, 7), 16);
+
+  const r2 = parseInt(hex2.slice(1, 3), 16);
+  const g2 = parseInt(hex2.slice(3, 5), 16);
+  const b2 = parseInt(hex2.slice(5, 7), 16);
+
+  return Math.sqrt(
+    Math.pow(r1 - r2, 2) + Math.pow(g1 - g2, 2) + Math.pow(b1 - b2, 2)
+  );
+}
+
 figma.on("selectionchange", () => {
   extractColorsFromSelection();
 });
 
-// Initial call to extract colors when the plugin loads
 extractColorsFromSelection();
