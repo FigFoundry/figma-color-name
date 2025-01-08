@@ -1,6 +1,6 @@
 import { colorsHTML, colorsNTC, colorsPANTONE, colorsX11 } from "./utils/colorData";
 
-figma.showUI(__html__, { themeColors: true, width: 280, height: 400 });
+figma.showUI(__html__, { themeColors: true, width: 256, height: 336 });
 
 function extractColorsFromSelection() {
   const selection = figma.currentPage.selection;

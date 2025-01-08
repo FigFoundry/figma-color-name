@@ -86,17 +86,19 @@ const App = () => {
                 color: textColor,
               }}
             >
-              <div style={{ fontSize: '14px', marginBottom: '8px' }}>
-                {color.names && color.names.length > 0
-                  ? `${color.names.map(toTitleCase).join(', ')}`
-                  : "Not available"}
-              </div>
               <div className="meta-content">
                 <div>{color.hex}</div>
-                <div>{convertToRgba(color.hex)}</div>
-                <div>{hexToHsl(color.hex)}</div>
+                {/* <div>{convertToRgba(color.hex)}</div> */}
+                {/* <div>{hexToHsl(color.hex)}</div> */}
                 {/* <div>{hexToOklch(color.hex)}</div> */}
-                <div>{hexToCmyk(color.hex)}</div>
+                {/* <div>{hexToCmyk(color.hex)}</div> */}
+              </div>
+              <div className="color-name">
+                {color.names && color.names.length > 0
+                  ? color.names.map((name, index) => (
+                      <div key={index}>{toTitleCase(name)}</div>
+                    ))
+                  : "Not available"}
               </div>
             </div>
           );
