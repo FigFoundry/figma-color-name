@@ -1,5 +1,5 @@
 export default {
-  name: "Hey, What's This Color?",
+  name: "Get Color Name",
   id: "1458188952030933252",
   api: "1.0.0",
   editorType: ["figma", "figjam"],

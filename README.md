@@ -1,4 +1,4 @@
-# Hey, What's This Color?
+# Get Color Name
 
 ```
 .
