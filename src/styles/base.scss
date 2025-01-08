@@ -1,24 +1,25 @@
-@use "./_variables" as *;
-@use "./_reset";
+@use './_variables' as *;
+@use './_reset';
 
 body {
   background-color: var(--figma-color-bg);
   color: var(--figma-color-text);
   font-family: var(--system-ui);
-  font-weight: 400;
   font-size: 0.75rem;
-  margin: 8px;
+  font-weight: 400;
 }
 
 .color-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 4px;
+  height: 100%;
 }
 
 .color-card {
+  box-shadow: 
+    0 4px 40px rgba(0, 0, 0, 0.06),
+    0 3px 20px rgba(0, 0, 0, 0.1);
   padding: 12px;
-  border-radius: .3125rem;
 }
 
 .color-info {
@@ -36,23 +37,24 @@ body {
 
 .no-colors {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   font-family: var(--system-ui);
-  font-size: .6875rem;
+  font-size: 0.6875rem;
   text-align: center;
 }
 
 .meta-content {
   font-family: var(--mono-ui);
-  font-size: .6875rem;
-  letter-spacing: .00344rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.00344rem;
   line-height: 1rem;
+  opacity: 0.56;
 }
 
 .color-name {
-  font-size: .8125rem;
+  font-size: 0.8125rem;
   font-weight: 550;
-  letter-spacing: -.002rem;
+  letter-spacing: -0.002rem;
   line-height: 1;
 }
