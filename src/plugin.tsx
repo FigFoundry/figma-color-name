@@ -104,7 +104,7 @@ const App = () => {
           );
         })
       ) : (
-        <div className="no-colors">Select an element with a solid fill.</div>
+        <div className="no-colors">٩(　ᐕ)و <br />Select an element with a solid fill.</div>
       )}
     </div>
   );
