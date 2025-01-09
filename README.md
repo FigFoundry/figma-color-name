@@ -4,12 +4,8 @@
 .
 ├── src
 │   ├── assets
-│   │   └── _icon.png
 │   ├── components
 │   ├── styles
-│   │   ├── _reset.scss
-│   │   ├── _variables.scss
-│   │   └── base.scss
 │   ├── types
 │   │   └── chroma-js.d.ts
 │   ├── utils
